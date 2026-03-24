@@ -43,12 +43,12 @@ ex:Type2Diabetes
     a             ex:Condition ;
     rdfs:subClassOf  ex:ChronicDisease ;
     ex:hasName    "Type 2 Diabetes"^^xsd:string ;
-    ex:managedBy  ex:Dr_Chen;
+    ex:managedBy    ex:Dr_Chen .
 
 ex:Hypertension
     a          ex:Condition ;
-    ex:hasName "Hypertension"^^xsd:string .
-    rdfs:subClassOf  ex:CardiovascularDisease .
+    ex:hasName "Hypertension"^^xsd:string;    
+    rdfs:subClassOf ex:CardiovascularDisease .
 
 #----Cardiovascular Disease----
 ex:CardiovascularDisease
