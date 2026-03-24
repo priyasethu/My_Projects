@@ -1,0 +1,56 @@
+
+
+#1. PREFIX declaration
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  
+@prefix ex: <http://example.org/health#> .
+
+#Question: Patient: James Nguyen, born 14 July 1972, male 
+#Conditions: Type 2 Diabetes, Hypertension
+#GP: Dr Sarah Chen, works at Westmead Medical Centre
+#Last visit: 10 March 2026
+#James's diabetes is managed by Dr Chen.
+
+#----patient information-----
+ex:Patient_Nguyen 
+    a ex:Patient;
+    ex:hasName "James Nguyen";
+    ex:hasBirthDate "1972-07-14"^^xsd:date;
+    ex:hasSex "male"^^xsd:string;
+    ex:hasCondition ex:Type2Diabetes, ex:Hypertension;
+    ex:hasGP ex:Dr_Chen;
+    ex:lastVisit "2026-03-10"^^xsd:date;
+    ex:hasMedicareNumber "4123 56789 1"^^xsd:string.
+
+
+#----doctor information-----
+ex:Dr_Chen 
+    a ex:Doctor;
+    ex:hasName "Dr Sarah Chen"^^xsd:string;
+    ex:worksAt ex:Westmead_Medical_Centre;
+    ex:manages ex:Patient_Nguyen;
+    ex:hasPhoneNumber "02 9845 0000"^^xsd:string.
+
+#----clinic----
+ex:Westmead_Medical_Centre
+    a            ex:MedicalCentre ;
+    ex:hasName   "Westmead Medical Centre"^^xsd:string;
+    ex:hasLocation "Westmead"^^xsd:string.
+
+# --- Conditions ---
+ex:Type2Diabetes
+    a             ex:Condition ;
+    rdfs:subClassOf  ex:ChronicDisease ;
+    ex:hasName    "Type 2 Diabetes"^^xsd:string ;
+    ex:managedBy  ex:Dr_Chen;
+
+ex:Hypertension
+    a          ex:Condition ;
+    ex:hasName "Hypertension"^^xsd:string .
+    rdfs:subClassOf  ex:CardiovascularDisease .
+
+#----Cardiovascular Disease----
+ex:CardiovascularDisease
+    a          ex:Condition ;
+    ex:hasName "Chronic Disease"^^xsd:string .
