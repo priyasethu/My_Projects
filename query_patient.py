@@ -25,6 +25,26 @@ WHERE {
     ?condition ex:hasName ?conditionName .
 }
 """
+
+
+# ── Query 3: Doctor → Patient → Clinic ──────────────────────────
+query3 = """
+PREFIX ex: <http://example.org/health#>
+
+SELECT ?doctorName ?patientName ?clinicName
+WHERE {
+    ?doctor    a              ex:Doctor ;
+               ex:hasName     ?doctorName ;
+               ex:manages     ?patient ;
+               ex:worksAt     ?clinic .
+    ?patient   ex:hasName     ?patientName .
+    ?clinic    ex:hasName     ?clinicName .
+}
+"""
+
+
+
+
 print("\n── Query 1: All patients ──")
 for row in g.query(query1):
     print(f"  Patient: {row.patient}")
@@ -33,3 +53,9 @@ for row in g.query(query1):
 print("\n── Query 2: Conditions for James Nguyen ──")
 for row in g.query(query2):
     print(f"  Condition: {row.conditionName}")
+
+print("\n── Query 3: Doctor → Patient → Clinic ──")
+for row in g.query(query3):
+    print(f"  Doctor:  {row.doctorName}")
+    print(f"  Patient: {row.patientName}")
+    print(f"  Clinic:  {row.clinicName}")
