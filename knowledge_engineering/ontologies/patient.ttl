@@ -54,3 +54,41 @@ ex:Hypertension
 ex:CardiovascularDisease
     a          ex:Condition ;
     ex:hasName "Chronic Disease"^^xsd:string .
+
+# --- Patient 2 ---
+ex:Patient_Okafor
+    a                    ex:Patient ;
+    ex:hasName           "Amara Okafor"^^xsd:string ;
+    ex:hasBirthDate      "1990-11-23"^^xsd:date ;
+    ex:hasSex            "female"^^xsd:string ;
+    ex:hasCondition      ex:Asthma ;
+    ex:hasGP             ex:Dr_Chen ;
+    ex:lastVisit         "2026-01-15"^^xsd:date ;
+    ex:hasMedicareNumber "5567 88901 2"^^xsd:string .
+
+# --- Patient 3 ---
+ex:Patient_Walsh
+    a                ex:Patient ;
+    ex:hasName       "Tom Walsh"^^xsd:string ;
+    ex:hasBirthDate  "1965-04-30"^^xsd:date ;
+    ex:hasSex        "male"^^xsd:string ;
+    ex:hasCondition  ex:Hypertension , ex:ChronicKidneyDisease ;
+    ex:hasGP         ex:Dr_Chen .
+    
+# Note: Tom Walsh has NO lastVisit and NO Medicare number
+# This is deliberate — we'll use OPTIONAL to handle missing data
+
+# --- New conditions ---
+ex:Asthma
+    a                ex:Condition ;
+    rdfs:subClassOf  ex:RespiratoryDisease ;
+    ex:hasName       "Asthma"^^xsd:string .
+
+ex:ChronicKidneyDisease
+    a                ex:Condition ;
+    rdfs:subClassOf  ex:ChronicDisease ;
+    ex:hasName       "Chronic Kidney Disease"^^xsd:string .
+
+ex:RespiratoryDisease
+    a             ex:Condition ;
+    ex:hasName    "Respiratory Disease"^^xsd:string .
