@@ -2,7 +2,8 @@ from rdflib import Graph
 
 # Load your Turtle file into an RDF graph
 g = Graph()
-g.parse("patient.ttl", format="turtle")
+g.parse("ontologies/patient.ttl", format="turtle")
+
 
 print(f"Graph loaded. Total triples: {len(g)}")
 
